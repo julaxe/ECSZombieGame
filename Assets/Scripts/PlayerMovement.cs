@@ -24,11 +24,11 @@ public class PlayerMovement : MonoBehaviour
         float aimY = Input.GetAxis("AimY");
         
         var newVelocity = math.normalizesafe(new float2(x, y)) * speed * Time.deltaTime;
-        _rigidbody.velocity = new Vector3(-newVelocity.x, 0.0f, -newVelocity.y);
+        _rigidbody.velocity = new Vector3(newVelocity.x, 0.0f, newVelocity.y);
 
         if (aimX != 0.0f || aimY != 0.0f)
         {
-            var newRot = Quaternion.LookRotation(new Vector3(-aimX, 0.0f, -aimY));
+            var newRot = Quaternion.LookRotation(new Vector3(aimX, 0.0f, aimY));
             transform.rotation = newRot;
         }
 
