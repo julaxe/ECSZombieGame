@@ -31,6 +31,5 @@ public class PlayerMovement : MonoBehaviour
             var newRot = Quaternion.LookRotation(new Vector3(aimX, 0.0f, aimY));
             transform.rotation = newRot;
         }
-
     }
 }
