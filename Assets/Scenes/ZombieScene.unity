@@ -584,11 +584,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 190415410}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &193602048 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1674286136205072885, guid: 787beca2d4fa7fe44be05ebca35fb4a2, type: 3}
-  m_PrefabInstance: {fileID: 1674286136226917852}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &254805332 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6266066066660017370, guid: 43148c66e9e912f49814f6bb2c5f0af4, type: 3}
@@ -1321,27 +1316,31 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 193602048}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1567267117546738467, guid: 43148c66e9e912f49814f6bb2c5f0af4, type: 3}
+      propertyPath: m_InitialEventNameOverriden
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9063953036472400842, guid: 43148c66e9e912f49814f6bb2c5f0af4, type: 3}
       propertyPath: m_Name
       value: vfx_MuzzleFlash_v10
       objectReference: {fileID: 0}
     - target: {fileID: 9063953036472400843, guid: 43148c66e9e912f49814f6bb2c5f0af4, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 9063953036472400843, guid: 43148c66e9e912f49814f6bb2c5f0af4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.84499997
       objectReference: {fileID: 0}
     - target: {fileID: 9063953036472400843, guid: 43148c66e9e912f49814f6bb2c5f0af4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.103
       objectReference: {fileID: 0}
     - target: {fileID: 9063953036472400843, guid: 43148c66e9e912f49814f6bb2c5f0af4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1.692
       objectReference: {fileID: 0}
     - target: {fileID: 9063953036472400843, guid: 43148c66e9e912f49814f6bb2c5f0af4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1349,15 +1348,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9063953036472400843, guid: 43148c66e9e912f49814f6bb2c5f0af4, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 9063953036472400843, guid: 43148c66e9e912f49814f6bb2c5f0af4, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 9063953036472400843, guid: 43148c66e9e912f49814f6bb2c5f0af4, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 9063953036472400843, guid: 43148c66e9e912f49814f6bb2c5f0af4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3025,9 +3024,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1674286136492805037, guid: 787beca2d4fa7fe44be05ebca35fb4a2, type: 3}
+      propertyPath: _range
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1674286136492805037, guid: 787beca2d4fa7fe44be05ebca35fb4a2, type: 3}
       propertyPath: _muzzleRef
       value: 
       objectReference: {fileID: 254805332}
+    - target: {fileID: 1674286136492805037, guid: 787beca2d4fa7fe44be05ebca35fb4a2, type: 3}
+      propertyPath: _bulletTrail
+      value: 
+      objectReference: {fileID: 1930985349805526, guid: d2ec70c814159504cb3e12e99b00b151, type: 3}
     - target: {fileID: 1674286136492805037, guid: 787beca2d4fa7fe44be05ebca35fb4a2, type: 3}
       propertyPath: _muzzleFlash
       value: 
