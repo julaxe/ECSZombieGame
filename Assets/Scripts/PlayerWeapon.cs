@@ -18,6 +18,9 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField] private GameObject _weaponRef;
     [SerializeField]private float _range = 20.0f;
     [SerializeField]private int _clipSize = 30;
+
+    [Header("BloodEffect")] [SerializeField]
+    private GameObject _bloofEffectRef;
     
     public UnityAction Reload;
     void Start()
@@ -34,21 +37,11 @@ public class PlayerWeapon : MonoBehaviour
 
     public void Shoot()
     {
-        Debug.Log("shoot");
-
         SpawnMuzzle();
 
         SpawnBulletTrail();
-        // //spawn muzzle
-        // Vector3 shootDirection = transform.forward;
-        // // GameObject muzzle = Instantiate(_muzzleRef, _muzzleLocation.transform.position,
-        // //     Quaternion.FromToRotation(Vector3.up, shootDirection));
-        // // Destroy(muzzle, 1.0f);
-        // RaycastHit hit;
-        // if (Physics.Raycast(_muzzleLocation.transform.position, shootDirection, out hit, _range))
-        // {
-        //     
-        // }
+        
+        CheckCollisionWithZombie();
     }
 
     private void SpawnMuzzle()
@@ -72,5 +65,27 @@ public class PlayerWeapon : MonoBehaviour
             Destroy(bulletTrail, 1.0f);
         }
     }
+
+    private void CheckCollisionWithZombie()
+    {
+        Vector3 shootDirection = transform.forward;
+        RaycastHit hit;
+        if (Physics.Raycast(_muzzleLocation.transform.position, shootDirection, out hit, _range))
+        {
+            if (hit.collider.CompareTag("Enemy"))
+            {
+                hit.collider.GetComponent<ZombieAnimation>().DeathAnimation();
+                SpawnBlood(hit);
+            }
+        }
+    }
+
+    private void SpawnBlood(RaycastHit hit)
+    {
+        var blood = Instantiate(_bloofEffectRef, hit.point, hit.transform.rotation);
+        Destroy(blood, 5.0f);
+    }
+    
+    
     
 }
