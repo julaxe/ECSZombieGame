@@ -39,8 +39,6 @@ public class PlayerWeapon : MonoBehaviour
     {
         SpawnMuzzle();
 
-        SpawnBulletTrail();
-        
         CheckCollisionWithZombie();
     }
 
@@ -52,18 +50,21 @@ public class PlayerWeapon : MonoBehaviour
     }
     private void SpawnBulletTrail(Vector3? hitPoint = null)
     {
+        var bulletTrail = Instantiate(_bulletTrail, _muzzleLocation.transform.position, Quaternion.identity);
+
+        var lineR = bulletTrail.GetComponent<LineRenderer>();
+        
+        lineR.SetPosition(0, _muzzleLocation.transform.position);
         if (hitPoint == null)
         {
-            var bulletTrail = Instantiate(_bulletTrail, _muzzleLocation.transform.position, Quaternion.identity);
-
-            var lineR = bulletTrail.GetComponent<LineRenderer>();
-
             var endPoint = transform.forward * _range;
-            lineR.SetPosition(0, _muzzleLocation.transform.position);
             lineR.SetPosition(1, _muzzleLocation.transform.position + endPoint);
-
-            Destroy(bulletTrail, 1.0f);
         }
+        else
+        {
+            lineR.SetPosition(1, hitPoint.Value);
+        }
+        Destroy(bulletTrail, 1.0f);
     }
 
     private void CheckCollisionWithZombie()
@@ -77,7 +78,12 @@ public class PlayerWeapon : MonoBehaviour
                 hit.collider.GetComponent<ZombieAnimation>().DeathAnimation();
                 SpawnBlood(hit);
             }
+            SpawnBulletTrail(hit.point);
+            return;
         }
+
+        SpawnBulletTrail();
+
     }
 
     private void SpawnBlood(RaycastHit hit)

@@ -33,7 +33,17 @@ public class ZombieAnimation : MonoBehaviour
         _boxCollider.enabled = false;
         _seekPlayer.enabled = false;
         _animator.SetTrigger(hashDeathAnimation);
-        Destroy(this.gameObject, 5.0f);
+        StartCoroutine(InactiveInSeconds(5.0f));
+    }
+
+    IEnumerator InactiveInSeconds(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        _animator.applyRootMotion = false;
+        _boxCollider.enabled = true;
+        _seekPlayer.enabled = true;
+        _animator.Play("0-idle_agressive");
+        gameObject.SetActive(false);
     }
     
 }

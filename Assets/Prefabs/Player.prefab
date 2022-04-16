@@ -193,9 +193,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31f3dd32832e7274fbb55cf4bd3f76a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _muzzleFlash: {fileID: 0}
   _muzzleLocation: {fileID: 1674286136205072884}
-  _weaponRef: {fileID: 3487969010117757146}
+  _bulletTrail: {fileID: 1930985349805526, guid: d2ec70c814159504cb3e12e99b00b151, type: 3}
   isShooting: 0
+  _weaponRef: {fileID: 3487969010117757146}
+  _range: 10
+  _clipSize: 30
+  _bloofEffectRef: {fileID: 3688362149343920581, guid: 5fee0044ea70acf4dacc41f0eef9ba11, type: 3}
 --- !u!1 &3487969010117757056
 GameObject:
   m_ObjectHideFlags: 0

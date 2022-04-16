@@ -16,9 +16,15 @@ public class SeekPlayer : MonoBehaviour
     public float AttackingDistance = 1.5f;
 
     private DotsNavPathFindingAgent _agent;
-    private void Start()
+    private DotsNavAgent _agentPlane;
+    private void Awake()
     {
         _agent = GetComponent<DotsNavPathFindingAgent>();
+        _agentPlane = GetComponent<DotsNavAgent>();
+        PlayerRef = FindObjectOfType<PlayerMovement>().gameObject;
+        
+        _agentPlane.Plane = FindObjectOfType<DotsNavPlane>();
+       
     }
 
     private void Update()
@@ -28,7 +34,7 @@ public class SeekPlayer : MonoBehaviour
 
     private void GoTowardsPlayer()
     {
-        if (_agent.State == PathQueryState.Pending) return;
+        //if (_agent.State == PathQueryState.Pending) return;
         if (_agent.State != PathQueryState.PathFound && _agent.State != PathQueryState.StartInvalid)
         {
             _agent.FindPath(PlayerRef.transform.position);
