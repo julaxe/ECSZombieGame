@@ -12,6 +12,7 @@ public class PlayerAnimation : MonoBehaviour
     private readonly int hashVelYAnimation = Animator.StringToHash("velY");
     private readonly int hashShootingAnimation = Animator.StringToHash("Shooting");
     private readonly int hashReloadAnimation = Animator.StringToHash("Reload");
+    private readonly int hashFireRateAnimation = Animator.StringToHash("FireRate");
 
     [SerializeField] private Vector3 cross;
     [SerializeField] private float dotprod;
@@ -29,6 +30,7 @@ public class PlayerAnimation : MonoBehaviour
         UpdateFacingDirection();
         _animator.SetBool(hashShootingAnimation, _weapon.isShooting);
         CheckAmmo();
+        UpdateFireRate();
     }
 
     private void UpdateFacingDirection()
@@ -50,6 +52,11 @@ public class PlayerAnimation : MonoBehaviour
             _weapon.Reload();
         }
         
+    }
+
+    private void UpdateFireRate()
+    {
+        _animator.SetFloat(hashFireRateAnimation, _weapon.GetFireRate());
     }
     
 }

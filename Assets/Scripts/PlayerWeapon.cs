@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 using UnityEngine.VFX;
 
 public class PlayerWeapon : MonoBehaviour
@@ -18,10 +19,15 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField] private GameObject _weaponRef;
     [SerializeField]private float _range = 20.0f;
     [SerializeField]private int _clipSize = 30;
+    [SerializeField] private float _fireRate = 1.0f;
     private int _currentAmmo;
 
     [Header("BloodEffect")] [SerializeField]
     private GameObject _bloofEffectRef;
+
+    [Header("UI")] 
+    [SerializeField] private GameObject _UIWeapon1;
+    [SerializeField] private GameObject _UIWeapon2;
     
     void Start()
     {
@@ -102,6 +108,33 @@ public class PlayerWeapon : MonoBehaviour
     public void Reload()
     {
         _currentAmmo = _clipSize;
+    }
+
+    public int GetCurrentAmmo()
+    {
+        return _currentAmmo;
+    }
+
+    public float GetFireRate()
+    {
+        return _fireRate;
+    }
+
+    public void UpdateWeaponInfo(Weapon weapon, Weapon secondary)
+    {
+        _clipSize = weapon.weaponInfo.clipSize;
+        _range = weapon.weaponInfo.range;
+        _fireRate = weapon.weaponInfo.fireRate;
+        _currentAmmo = weapon.currentAmmo;
+        _muzzleFlash = weapon.weaponInfo.visualEffectRef;
+        _bulletTrail = weapon.weaponInfo.bulletTrail;
+        _weaponRef.GetComponent<SkinnedMeshRenderer>().material = weapon.weaponInfo.material;
+        _UIWeapon1.GetComponent<RawImage>().texture = weapon.weaponInfo.panel;
+        if (secondary)
+        {
+            _UIWeapon2.GetComponent<RawImage>().texture = secondary.weaponInfo.panel;
+        }
+        
     }
     
     
