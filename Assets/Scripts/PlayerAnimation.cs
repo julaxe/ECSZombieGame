@@ -11,6 +11,7 @@ public class PlayerAnimation : MonoBehaviour
     private readonly int hashVelXAnimation = Animator.StringToHash("velX");
     private readonly int hashVelYAnimation = Animator.StringToHash("velY");
     private readonly int hashShootingAnimation = Animator.StringToHash("Shooting");
+    private readonly int hashReloadAnimation = Animator.StringToHash("Reload");
 
     [SerializeField] private Vector3 cross;
     [SerializeField] private float dotprod;
@@ -27,6 +28,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         UpdateFacingDirection();
         _animator.SetBool(hashShootingAnimation, _weapon.isShooting);
+        CheckAmmo();
     }
 
     private void UpdateFacingDirection()
@@ -38,6 +40,16 @@ public class PlayerAnimation : MonoBehaviour
   
         _animator.SetFloat(hashVelXAnimation, cross.y);
         _animator.SetFloat(hashVelYAnimation, dotprod);
+    }
+
+    private void CheckAmmo()
+    {
+        if (_weapon.OutOfAmmo())
+        {
+            _animator.SetTrigger(hashReloadAnimation);
+            _weapon.Reload();
+        }
+        
     }
     
 }

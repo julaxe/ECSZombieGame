@@ -18,14 +18,14 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField] private GameObject _weaponRef;
     [SerializeField]private float _range = 20.0f;
     [SerializeField]private int _clipSize = 30;
+    private int _currentAmmo;
 
     [Header("BloodEffect")] [SerializeField]
     private GameObject _bloofEffectRef;
     
-    public UnityAction Reload;
     void Start()
     {
-        
+        _currentAmmo = _clipSize;
     }
 
     // Update is called once per frame
@@ -40,6 +40,8 @@ public class PlayerWeapon : MonoBehaviour
         SpawnMuzzle();
 
         CheckCollisionWithZombie();
+
+        _currentAmmo -= 1;
     }
 
     private void SpawnMuzzle()
@@ -91,7 +93,16 @@ public class PlayerWeapon : MonoBehaviour
         var blood = Instantiate(_bloofEffectRef, hit.point, hit.transform.rotation);
         Destroy(blood, 5.0f);
     }
-    
+
+    public bool OutOfAmmo()
+    {
+        return _currentAmmo <= 0;
+    }
+
+    public void Reload()
+    {
+        _currentAmmo = _clipSize;
+    }
     
     
 }

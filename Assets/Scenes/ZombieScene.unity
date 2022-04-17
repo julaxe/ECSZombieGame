@@ -12876,6 +12876,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1674286136492805037, guid: 787beca2d4fa7fe44be05ebca35fb4a2, type: 3}
+      propertyPath: _clipSize
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1674286136492805037, guid: 787beca2d4fa7fe44be05ebca35fb4a2, type: 3}
       propertyPath: _muzzleFlash
       value: 
       objectReference: {fileID: 254805335}
