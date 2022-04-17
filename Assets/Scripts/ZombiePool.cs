@@ -21,7 +21,12 @@ public class ZombiePool : MonoBehaviour
     public GameObject GetZombie()
     {
         var zombie = _zombieList.Find(x => !x.activeInHierarchy);
-        zombie.SetActive(true);
-        return zombie;
+        if(zombie)
+        {
+            zombie.SetActive(true);
+            return zombie;
+        }
+        return null;
+
     }
 }
