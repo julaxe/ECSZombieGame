@@ -28,6 +28,9 @@ public class PlayerWeapon : MonoBehaviour
     [Header("UI")] 
     [SerializeField] private GameObject _UIWeapon1;
     [SerializeField] private GameObject _UIWeapon2;
+    [SerializeField] private GameObject _UIZombieCounter;
+
+    private int _currentZombieCount = 0;
     
     void Start()
     {
@@ -85,6 +88,8 @@ public class PlayerWeapon : MonoBehaviour
             {
                 hit.collider.GetComponent<ZombieAnimation>().DeathAnimation();
                 SpawnBlood(hit);
+                CountAZombie();
+                
             }
             SpawnBulletTrail(hit.point);
             return;
@@ -93,6 +98,13 @@ public class PlayerWeapon : MonoBehaviour
         SpawnBulletTrail();
 
     }
+
+    private void CountAZombie()
+    {
+        _currentZombieCount += 1;
+        _UIZombieCounter.GetComponent<Text>().text = _currentZombieCount.ToString();
+    }
+    
 
     private void SpawnBlood(RaycastHit hit)
     {
