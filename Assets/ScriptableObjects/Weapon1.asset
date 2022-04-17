@@ -16,6 +16,7 @@ MonoBehaviour:
     weaponName: weapon1
     panel: {fileID: 8400000, guid: 825e90b60f5e4f3409ccfa764afa4e50, type: 2}
     material: {fileID: 2100000, guid: 78660c09ff101ea4cb77de408a9527da, type: 2}
+    soundEffect: {fileID: 8300000, guid: 814a3ba87140c9344867daa39309b22a, type: 3}
     clipSize: 30
     fireRate: 1
     range: 20

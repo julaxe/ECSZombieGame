@@ -20,6 +20,7 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField]private float _range = 20.0f;
     [SerializeField]private int _clipSize = 30;
     [SerializeField] private float _fireRate = 1.0f;
+    private AudioClip _shootSoundEffect;
     private int _currentAmmo;
 
     [Header("BloodEffect")] [SerializeField]
@@ -31,10 +32,14 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField] private GameObject _UIZombieCounter;
 
     private int _currentZombieCount = 0;
+    private AudioClip _zombieDeathAudioClip;
+    private AudioClip _reloadAudioClip;
     
     void Start()
     {
         _currentAmmo = _clipSize;
+        _zombieDeathAudioClip = Resources.Load<AudioClip>("Sounds/zombieDeath");
+        _reloadAudioClip = Resources.Load<AudioClip>("Sounds/gunreload1");
     }
 
     // Update is called once per frame
@@ -47,7 +52,9 @@ public class PlayerWeapon : MonoBehaviour
     public void Shoot()
     {
         SpawnMuzzle();
-
+        
+        PlayShootSoundEffect();
+        
         CheckCollisionWithZombie();
 
         _currentAmmo -= 1;
@@ -89,7 +96,7 @@ public class PlayerWeapon : MonoBehaviour
                 hit.collider.GetComponent<ZombieAnimation>().DeathAnimation();
                 SpawnBlood(hit);
                 CountAZombie();
-                
+                PlayZombieDeathEffect();
             }
             SpawnBulletTrail(hit.point);
             return;
@@ -119,6 +126,7 @@ public class PlayerWeapon : MonoBehaviour
 
     public void Reload()
     {
+        PlayReloadEffect();
         _currentAmmo = _clipSize;
     }
 
@@ -132,11 +140,25 @@ public class PlayerWeapon : MonoBehaviour
         return _fireRate;
     }
 
+    private void PlayShootSoundEffect()
+    {
+        SoundManager.PlayClip(_shootSoundEffect);
+    }
+
+    private void PlayZombieDeathEffect()
+    {
+        SoundManager.PlayClip(_zombieDeathAudioClip);
+    }
+    private void PlayReloadEffect()
+    {
+        SoundManager.PlayClip(_reloadAudioClip);
+    }
     public void UpdateWeaponInfo(Weapon weapon, Weapon secondary)
     {
         _clipSize = weapon.weaponInfo.clipSize;
         _range = weapon.weaponInfo.range;
         _fireRate = weapon.weaponInfo.fireRate;
+        _shootSoundEffect = weapon.weaponInfo.soundEffect;
         _currentAmmo = weapon.currentAmmo;
         _muzzleFlash = weapon.weaponInfo.visualEffectRef;
         _bulletTrail = weapon.weaponInfo.bulletTrail;

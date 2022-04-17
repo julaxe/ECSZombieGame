@@ -24,5 +24,7 @@ public class MenuManager : MonoBehaviour
     public void PlayGame()
     {
         SceneManager.LoadScene(4);
+        AudioClip darkbackground = Resources.Load<AudioClip>("Sounds/GameMusic");
+        SoundManager.PlayMusic(darkbackground);
     }
 }

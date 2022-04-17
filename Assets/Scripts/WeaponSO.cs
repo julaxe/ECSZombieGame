@@ -18,6 +18,7 @@ public struct WeaponInfo
     public string weaponName;
     public RenderTexture panel;
     public Material material;
+    public AudioClip soundEffect;
     public int clipSize;
     public float fireRate;
     public float range;
